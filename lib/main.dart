@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
 const animationDuration = 250;
-Color backgroundColor = Color(0xFF22252D);
-Color lightColor = Color(0xFFE7E7E7);
-Color calculatorHolderColor = Color(0xFF292D36);
-Color textColor = Color(0xFFFFFFFF);
-Color buttonColor = Color(0xFF1D1F25);
+Color backgroundColor = const Color(0xFF22252D);
+Color lightColor = const Color(0xFFE7E7E7);
+Color calculatorHolderColor = const Color(0xFF292D36);
+Color textColor = const Color(0xFFFFFFFF);
+Color buttonColor = const Color(0xFF1D1F25);
 Color operatorColor = const Color(0xFFEB6666);
-Color toolColor = Color(0xFF26FAD4);
-Color lightModeColor = Color(0xFF707378);
-Color darkModeColor = Color(0xFFFFFFFF);
+Color toolColor = const Color(0xFF26FAD4);
+Color lightModeColor = const Color(0xFF707378);
+Color darkModeColor = const Color(0xFFFFFFFF);
 
 bool _isEnabled = true;
 
@@ -25,10 +25,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Calculator(),
-      theme: ThemeData(useMaterial3: true),
-    );
+        debugShowCheckedModeBanner: false,
+        home: const Calculator(),
+        theme: ThemeData(useMaterial3: true));
   }
 }
 
@@ -46,21 +45,21 @@ class _CalculatorState extends State<Calculator> {
 
   void changeTheme(bool isEnabled) {
     if (isEnabled) {
-      backgroundColor = Color(0xFF22252D);
-      calculatorHolderColor = Color(0xFF292D36);
-      textColor = Color(0xFFFFFFFF);
-      buttonColor = Color(0xFF1D1F25);
-      toolColor = Color(0xFF26FAD4);
-      lightModeColor = Color(0xFF707378);
-      darkModeColor = Color(0xFFFFFFFF);
+      backgroundColor = const Color(0xFF22252D);
+      calculatorHolderColor = const Color(0xFF292D36);
+      textColor = const Color(0xFFFFFFFF);
+      buttonColor = const Color(0xFF1D1F25);
+      toolColor = const Color(0xFF26FAD4);
+      lightModeColor = const Color(0xFF707378);
+      darkModeColor = const Color(0xFFFFFFFF);
     } else {
-      backgroundColor = Color(0xFFFFFFFF);
-      calculatorHolderColor = Color(0xFFf5f5f5);
-      textColor = Color(0xFF292D36);
-      buttonColor = Color(0xFFF7F7F7);
-      toolColor = Color(0xFF00E1B5);
-      lightModeColor = Color(0xFFEB6666);
-      darkModeColor = Color(0xFFDFDFDF);
+      backgroundColor = const Color(0xFFFFFFFF);
+      calculatorHolderColor = const Color(0xFFf5f5f5);
+      textColor = const Color(0xFF292D36);
+      buttonColor = const Color(0xFFF7F7F7);
+      toolColor = const Color.fromARGB(255, 23, 152, 126);
+      lightModeColor = const Color(0xFFEB6666);
+      darkModeColor = const Color(0xFFDFDFDF);
     }
   }
 
@@ -86,7 +85,7 @@ class _CalculatorState extends State<Calculator> {
           equation = "0";
         }
       } else if (text == "⌫") {
-        if (equation != null && equation.length > 0) {
+        if (equation.isNotEmpty) {
           if (equation.endsWith(" ")) {
             equation = equation.substring(0, equation.length - 3);
           } else {
@@ -116,8 +115,9 @@ class _CalculatorState extends State<Calculator> {
             children: <Widget>[
               AnimatedContainer(
                 duration: const Duration(milliseconds: animationDuration),
-                margin: EdgeInsets.symmetric(vertical: 16),
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                margin: const EdgeInsets.symmetric(vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: calculatorHolderColor),
@@ -126,7 +126,7 @@ class _CalculatorState extends State<Calculator> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: GestureDetector(
                         child: Icon(
                           Icons.light_mode,
@@ -143,7 +143,7 @@ class _CalculatorState extends State<Calculator> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: GestureDetector(
                         child: Icon(Icons.dark_mode, color: darkModeColor),
                         onTap: () {
@@ -162,7 +162,7 @@ class _CalculatorState extends State<Calculator> {
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: animationDuration),
-                  margin: EdgeInsets.symmetric(horizontal: 24),
+                  margin: const EdgeInsets.symmetric(horizontal: 24),
                   alignment: Alignment.bottomRight,
                   child: Text(
                     result,
@@ -174,7 +174,8 @@ class _CalculatorState extends State<Calculator> {
                 flex: 0,
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: animationDuration),
-                  margin: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                   alignment: Alignment.bottomRight,
                   child: RichText(
                     overflow: TextOverflow.fade,
@@ -199,7 +200,7 @@ class _CalculatorState extends State<Calculator> {
                   decoration: BoxDecoration(
                     color: calculatorHolderColor,
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(24)),
+                        const BorderRadius.vertical(top: Radius.circular(24)),
                   ),
                   width: MediaQuery.of(context).size.width,
                   child: Padding(

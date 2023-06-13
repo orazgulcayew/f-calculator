@@ -6,11 +6,13 @@ class CalculatorButton extends StatelessWidget {
   final String text;
   final buttonPressed;
 
-  CalculatorButton(this.color, this.textColor, this.text, this.buttonPressed);
+  const CalculatorButton(
+      this.color, this.textColor, this.text, this.buttonPressed,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.1,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
